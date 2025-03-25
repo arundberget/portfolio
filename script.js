@@ -84,12 +84,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: formData
                 });
 
-                if (response.ok) {
+                const data = await response.json(); // Parse the JSON response
+
+                if (response.ok && data.success) { // Check both response.ok and data.success
                     showFeedback(true, 'Thank you for your message!');
                     contactForm.reset();
                 } else {
-                    showFeedback(false, 'An error occurred. Please try again later.');
-                    console.error('Form submission error:', response.status);
+                    let errorMessage = 'An error occurred. Please try again later.';
+                    if (data && data.error) {
+                        errorMessage = data.error; // Use Formspree's error message if available
+                    }
+                    showFeedback(false, errorMessage);
+                    console.error('Form submission error:', response.status, data);
                 }
             } catch (error) {
                 showFeedback(false, 'An error occurred. Please try again later.');
