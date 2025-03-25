@@ -81,19 +81,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 const formData = new FormData(contactForm);
                 const response = await fetch(contactForm.action, {
                     method: 'POST',
-                    body: formData
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
                 });
 
-                const data = await response.json(); // Parse the JSON response
+                const data = await response.json();
 
-                if (response.ok && data.success) { // Check both response.ok and data.success
+                if (response.ok) {
                     showFeedback(true, 'Thank you for your message!');
                     contactForm.reset();
                 } else {
-                    let errorMessage = 'An error occurred. Please try again later.';
-                    if (data && data.error) {
-                        errorMessage = data.error; // Use Formspree's error message if available
-                    }
+                    let errorMessage = data.error || 'An error occurred. Please try again later.';
                     showFeedback(false, errorMessage);
                     console.error('Form submission error:', response.status, data);
                 }
