@@ -79,16 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 const formData = new FormData(contactForm);
-                const response = await fetch('contact.php', {
+                const response = await fetch(contactForm.action, {
                     method: 'POST',
                     body: formData
                 });
 
-                const result = await response.json();
-                showFeedback(result.status === 'success', result.message);
-
-                if (result.status === 'success') {
+                if (response.ok) {
+                    showFeedback(true, 'Thank you for your message!');
                     contactForm.reset();
+                } else {
+                    showFeedback(false, 'An error occurred. Please try again later.');
+                    console.error('Form submission error:', response.status);
                 }
             } catch (error) {
                 showFeedback(false, 'An error occurred. Please try again later.');
