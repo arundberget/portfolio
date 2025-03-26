@@ -138,11 +138,11 @@ section {
     margin-bottom: 20px
 }
 
-#about-me {
+#about {
     padding-top: 190px;
 }
 
-.about-me-content {
+.about-content {
     display: flex;
     align-items: center;
     gap: 50px;
@@ -153,7 +153,7 @@ section {
     border: 1px solid var(--border-color);
 }
 
-.about-me-content img {
+.about-content img {
     width: 250px;
     height: 250px;
     border-radius: 50%;
@@ -162,12 +162,12 @@ section {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.about-me-content img:hover {
+.about-content img:hover {
     transform: scale(1.05);
     box-shadow: 0 0 0 4px var(--primary-light);
 }
 
-.about-me-text p {
+.about-text p {
     color: var(--text-muted);
     font-size: 1.1em;
     line-height: 1.8;
