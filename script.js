@@ -45,6 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let lastScroll = 0;
     const header = document.querySelector('header');
+    const aboutSection = document.getElementById('about');
+
+    const headerHeight = header.offsetHeight;
+    aboutSection.style.marginTop = `${headerHeight}px`;
+    
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
 
